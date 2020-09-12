@@ -9,6 +9,10 @@ const addCategory = async (req, res) => {
     const payload = req.body;
 
     db.Category.create(payload);
+
+    res.status(201).json({
+      category: 'Category successfully created',
+    });
   } catch (error) {
     res.status(500).json({
       error: error.message,
