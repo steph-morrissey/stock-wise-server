@@ -1,6 +1,6 @@
 const PORT = process.env.PORT || 8000;
 
-const DB_URI = process.env.MONGODB_URI || 'mongodb://localhost/googleBooks';
+const DB_URI = process.env.MONGODB_URI || 'mongodb://localhost/inventory';
 
 const MONGOOSE_OPTIONS = {
   useUnifiedTopology: true,
@@ -8,7 +8,7 @@ const MONGOOSE_OPTIONS = {
   useNewUrlParser: true,
 };
 
-module.exports = {
+export default {
   PORT,
   DB_URI,
   MONGOOSE_OPTIONS,

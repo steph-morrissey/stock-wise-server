@@ -1,6 +1,5 @@
-/* eslint-disable global-require */
-module.exports = {
-  Category: require('./Category'),
-  Product: require('./Product'),
-  Supplier: require('./Supplier'),
-};
+import Category from './Category';
+import Product from './Product';
+import Supplier from './Supplier';
+
+export default { Category, Product, Supplier };
