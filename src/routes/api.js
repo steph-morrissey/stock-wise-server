@@ -1,6 +1,6 @@
 import express from 'express';
 
-import db from '../models';
+// import db from '../models';
 
 const router = express.Router();
 
