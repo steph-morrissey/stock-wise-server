@@ -1,6 +1,9 @@
 {
   "extends": ["airbnb-base"],
   "rules": {
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "disable-next-line": "off",
+    "object-curly-newline": "off",
+    "no-underscore-dangle": "off"
   }
 }
