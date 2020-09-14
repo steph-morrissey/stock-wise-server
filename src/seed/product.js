@@ -1,4 +1,4 @@
-const inventory = [
+const product = [
   {
     name: 'Absolut Vodka',
     status: 'In Stock',
@@ -154,4 +154,4 @@ const inventory = [
   },
 ];
 
-export default inventory;
+export default product;
