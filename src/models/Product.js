@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const schema = new Schema({
-  category: { type: String, required: true },
+  supplierId:,
+  categoryId: ,
   name: { type: String, required: true },
   status: { type: String, required: true },
   dateNotified: { type: Date, required: false },
