@@ -6,6 +6,7 @@ const router = express.Router();
 
 const addCategory = async (req, res) => {
   try {
+    console.log("HERE", req.user);
     const payload = req.body;
 
     db.Category.create(payload);
