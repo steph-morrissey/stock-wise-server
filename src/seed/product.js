@@ -1,3 +1,12 @@
+// seed.js
+import mongoose from 'mongoose';
+
+import { MONGOOSE_OPTIONS, DB_URI } from '../config';
+import db from '../models';
+
+const supplierId = mongoose.Types.ObjectId('5f5fbbe44a4e255799fcc463');
+const spiritsId = mongoose.Types.ObjectId('5f5fbbd1b8791457703fd3fa');
+
 const product = [
   {
     name: 'Absolut Vodka',
@@ -5,8 +14,8 @@ const product = [
     dateNotified: null,
     costPrice: 13.99,
     sellingPrice: 15.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Absolut Vanilla',
@@ -14,8 +23,8 @@ const product = [
     dateNotified: null,
     costPrice: 13.99,
     sellingPrice: 15.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Absolut Raspberri',
@@ -23,8 +32,8 @@ const product = [
     dateNotified: null,
     costPrice: 13.99,
     sellingPrice: 15.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Aperol',
@@ -32,8 +41,8 @@ const product = [
     dateNotified: null,
     costPrice: 8,
     sellingPrice: 12,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Barenjager',
@@ -41,8 +50,8 @@ const product = [
     dateNotified: null,
     costPrice: 28,
     sellingPrice: 30.34,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Beefeater',
@@ -50,8 +59,8 @@ const product = [
     dateNotified: null,
     costPrice: 13.99,
     sellingPrice: 15.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Beefeater Pink',
@@ -59,8 +68,8 @@ const product = [
     dateNotified: null,
     costPrice: 13.99,
     sellingPrice: 15.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Beefeater Blood Orange',
@@ -68,8 +77,8 @@ const product = [
     dateNotified: null,
     costPrice: 13.99,
     sellingPrice: 15.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Bombay Sapphire',
@@ -77,8 +86,8 @@ const product = [
     dateNotified: null,
     costPrice: 19,
     sellingPrice: 21.5,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Havana 3',
@@ -86,8 +95,8 @@ const product = [
     dateNotified: null,
     costPrice: 15.99,
     sellingPrice: 18.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Havana 7',
@@ -95,8 +104,8 @@ const product = [
     dateNotified: null,
     costPrice: 19.99,
     sellingPrice: 23.25,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Jagermeister',
@@ -104,8 +113,8 @@ const product = [
     dateNotified: null,
     costPrice: 8,
     sellingPrice: 12,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Jamesons',
@@ -113,8 +122,8 @@ const product = [
     dateNotified: null,
     costPrice: 17,
     sellingPrice: 21.23,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Olmeca Blanco',
@@ -122,8 +131,8 @@ const product = [
     dateNotified: null,
     costPrice: 14,
     sellingPrice: 16.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: 'Olmeca Reposado',
@@ -131,8 +140,8 @@ const product = [
     dateNotified: null,
     costPrice: 14,
     sellingPrice: 16.99,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: ' Tanqueray',
@@ -140,8 +149,8 @@ const product = [
     dateNotified: null,
     costPrice: 9,
     sellingPrice: 13,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
   {
     name: ' Tanqueray No. Ten Gin',
@@ -149,9 +158,20 @@ const product = [
     dateNotified: null,
     costPrice: 22,
     sellingPrice: 25,
-    supplierId: '5f5fa9c7f22cd552f609431b',
-    categoryId: '5f5fa9c7f22cd552f6094317',
+    supplierId,
+    categoryId: spiritsId,
   },
 ];
 
-export default product;
+mongoose.connect(DB_URI, MONGOOSE_OPTIONS);
+
+db.Product.deleteMany({})
+  .then(() => db.Product.collection.insertMany(product))
+  .then((data) => {
+    console.log(`${data.result.n} records inserted!`);
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });

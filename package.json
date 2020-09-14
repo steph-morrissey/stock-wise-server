@@ -11,7 +11,9 @@
     "lint:fix": "eslint src --fix",
     "start": "npm run build && node dist/server.js",
     "start:dev": "nodemon -e js --watch src --exec \"npm run start\"",
-    "seed": "npm run build && node dist/seed/seed.js"
+    "seed:supplier": "npm run build && node dist/seed/supplier.js",
+    "seed:category": "npm run build && node dist/seed/category.js",
+    "seed:product": "npm run build && node dist/seed/product.js"
   },
   "repository": {
     "type": "git",

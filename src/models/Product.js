@@ -8,6 +8,8 @@ const schema = new Schema({
   dateNotified: { type: Date, required: false },
   costPrice: { type: Number, required: false },
   sellingPrice: { type: Number, required: false },
+  supplierId: { type: Schema.Types.ObjectId, ref: 'Supplier' },
+  categoryId: { type: Schema.Types.ObjectId, ref: 'Category' },
 });
 
 const Product = mongoose.model('Product', schema);

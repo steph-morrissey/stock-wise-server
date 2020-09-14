@@ -1,5 +1,10 @@
+// seed.js
+import mongoose from 'mongoose';
+
+import { MONGOOSE_OPTIONS, DB_URI } from '../config';
+import db from '../models';
+
 const supplier = [
-  // _id = ObjectId("5f5fa9c7f22cd552f609431b"
   {
     name: 'LWC',
     details: {
@@ -10,4 +15,15 @@ const supplier = [
   },
 ];
 
-export default supplier;
+mongoose.connect(DB_URI, MONGOOSE_OPTIONS);
+
+db.Supplier.deleteMany({})
+  .then(() => db.Supplier.collection.insertMany(supplier))
+  .then((data) => {
+    console.log(`${data.result.n} records inserted!`);
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
