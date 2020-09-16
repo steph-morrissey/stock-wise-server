@@ -1,4 +1,3 @@
-// seed.js
 import mongoose from 'mongoose';
 
 import { MONGOOSE_OPTIONS, DB_URI } from '../config';
