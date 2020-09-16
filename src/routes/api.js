@@ -4,7 +4,7 @@ import db from '../models';
 
 const router = express.Router();
 
-const viewInventory = async (req, res) => {
+const viewAllProducts = async (req, res) => {
   const inventory = await db.Product.find({}).catch((err) => console.log(err));
   res.json(inventory);
 };
@@ -35,6 +35,38 @@ const addCategory = async (req, res) => {
   }
 };
 
+const addSupplier = async (req, res) => {
+  try {
+    const payload = req.body;
+
+    db.Supplier.create(payload);
+
+    res.status(201).json({
+      supplier: 'Supplier successfully created',
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+const addProduct = async (req, res) => {
+  try {
+    const payload = req.body;
+
+    db.Product.create(payload);
+
+    res.status(201).json({
+      product: 'Product successfully created',
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
 const updateCategory = async (req, res) => {
   try {
     const { id } = req.params;
@@ -47,40 +79,81 @@ const updateCategory = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-const deleteCategory = async (req, res) => {
+const updateSupplier = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteBook = await db.Category.findByIdAndDelete(id);
+    const { body } = req;
+    const data = await db.Supplier.findByIdAndUpdate(id, body);
 
-    res.status(200).json({ data: deleteBook });
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+const updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { body } = req;
+    const data = await db.Product.findByIdAndUpdate(id, body);
+
+    res.status(200).json(data);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
 
-// const addSupplier = async (req, res) => {
-//   try {
-//     const payload = req.body;
+const deleteCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const removeCategory = await db.Category.findByIdAndDelete(id);
 
-//     db.Supplier.create(payload);
+    res.status(200).json({ data: removeCategory });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+};
 
-//     res.status(201).json({
-//       category: 'Supplier successfully created',
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       error: error.message,
-//     });
-//   }
-// };
+const deleteSupplier = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const removeSupplier = await db.Supplier.findByIdAndDelete(id);
 
-router.get('/inventory', viewInventory);
+    res.status(200).json({ data: removeSupplier });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const removeProduct = await db.Product.findByIdAndDelete(id);
+
+    res.status(200).json({ data: removeProduct });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// View all
+router.get('/inventory', viewAllProducts);
 router.get('/categories', viewAllCategories);
 router.get('/suppliers', viewAllSuppliers);
+// Add to Inventory
 router.post('/categories', addCategory);
+router.post('/suppliers', addSupplier);
+router.post('/inventory', addProduct);
+// Update Inventory
 router.put('/categories/:id', updateCategory);
+router.put('/suppliers/:id', updateSupplier);
+router.put('/products/:id', updateProduct);
+// Delete from Inventory
 router.delete('/categories/:id', deleteCategory);
-// router.post('/suppliers', addSupplier);
+router.delete('/suppliers/:id', deleteSupplier);
+router.delete('/products/:id', deleteProduct);
 export default router;
