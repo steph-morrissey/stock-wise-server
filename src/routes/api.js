@@ -19,6 +19,33 @@ const viewAllSuppliers = async (req, res) => {
   res.json(suppliers);
 };
 
+const getProduct = async (req, res) => {
+  const { id } = req.params;
+  const product = await db.Product.findOne()
+    .where({ _id: id })
+    .catch((err) => console.log(err));
+
+  res.json(product);
+};
+
+const getCategory = async (req, res) => {
+  const { id } = req.params;
+  const category = await db.Category.findOne()
+    .where({ _id: id })
+    .catch((err) => console.log(err));
+
+  res.json(category);
+};
+
+const getSupplier = async (req, res) => {
+  const { id } = req.params;
+  const supplier = await db.Supplier.findOne()
+    .where({ _id: id })
+    .catch((err) => console.log(err));
+
+  res.json(supplier);
+};
+
 const addCategory = async (req, res) => {
   try {
     const payload = req.body;
@@ -79,6 +106,7 @@ const updateCategory = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 const updateSupplier = async (req, res) => {
   try {
     const { id } = req.params;
@@ -91,6 +119,7 @@ const updateSupplier = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -141,13 +170,17 @@ const deleteProduct = async (req, res) => {
 };
 
 // View all
-router.get('/inventory', viewAllProducts);
+router.get('/products', viewAllProducts);
 router.get('/categories', viewAllCategories);
 router.get('/suppliers', viewAllSuppliers);
+// Find One
+router.get('/products/:id', getProduct);
+router.get('/categories/:id', getCategory);
+router.get('/suppliers/:id', getSupplier);
 // Add to Inventory
 router.post('/categories', addCategory);
 router.post('/suppliers', addSupplier);
-router.post('/inventory', addProduct);
+router.post('/products', addProduct);
 // Update Inventory
 router.put('/categories/:id', updateCategory);
 router.put('/suppliers/:id', updateSupplier);
