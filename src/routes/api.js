@@ -10,7 +10,7 @@ const viewAllProducts = async (req, res) => {
 };
 
 const viewAllCategories = async (req, res) => {
-  const categories = await db.Category.find({}).catch((err) => console.log(err),);
+  const categories = await db.Category.find({}).catch((err) => console.log(err));
   res.json(categories);
 };
 
