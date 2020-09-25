@@ -46,6 +46,13 @@ const getSupplier = async (req, res) => {
   res.json(supplier);
 };
 
+const getLowInStockProducts = async (req, res) => {
+  const supplier = await db.Supplier.find()
+    .where({ status: 'Low in Stock' })
+    .catch((err) => console.log(err));
+
+  res.json(supplier);
+};
 const addCategory = async (req, res) => {
   try {
     const payload = req.body;
@@ -173,6 +180,8 @@ const deleteProduct = async (req, res) => {
 router.get('/products', viewAllProducts);
 router.get('/categories', viewAllCategories);
 router.get('/suppliers', viewAllSuppliers);
+// View Low in Stock
+router.get('/dashboard', getLowInStockProducts);
 // Find One
 router.get('/products/:id', getProduct);
 router.get('/categories/:id', getCategory);
