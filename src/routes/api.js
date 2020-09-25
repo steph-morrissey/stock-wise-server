@@ -4,8 +4,9 @@ import db from '../models';
 const router = express.Router();
 
 const viewAllProducts = async (req, res) => {
-  const inventory = await db.Product.find({}).catch((err) => console.log(err));
-  res.json(inventory);
+  const products = await db.Product.find({}).catch((err) => console.log(err));
+  const categories = await db.Category.find({}).catch((err) => console.log(err));
+  res.json({ products, categories });
 };
 
 const viewAllCategories = async (req, res) => {
@@ -65,10 +66,22 @@ const getProductsBySupplier = async (req, res) => {
   try {
     const { id } = req.params;
 
-    console.log(id);
-
     const products = await db.Product.find({
       supplierId: id,
+    });
+
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const getProductsByCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const products = await db.Product.find({
+      categoryId: id,
     });
 
     res.json(products);
@@ -222,5 +235,7 @@ router.put('/products/:id', updateProduct);
 router.delete('/categories/:id', deleteCategory);
 router.delete('/suppliers/:id', deleteSupplier);
 router.delete('/products/:id', deleteProduct);
+// Get products by supplier or category
 router.get('/suppliers/:id/products', getProductsBySupplier);
+router.get('/categories/:id/products', getProductsByCategory);
 export default router;
