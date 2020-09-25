@@ -1,5 +1,4 @@
 import express from 'express';
-
 import db from '../models';
 
 const router = express.Router();
@@ -46,13 +45,38 @@ const getSupplier = async (req, res) => {
   res.json(supplier);
 };
 
-const getLowInStockProducts = async (req, res) => {
-  const supplier = await db.Supplier.find()
-    .where({ status: 'Low in Stock' })
-    .catch((err) => console.log(err));
+const getDashboard = async (req, res) => {
+  try {
+    const products = await db.Product.find({
+      status: 'Low In Stock',
+    });
 
-  res.json(supplier);
+    const suppliers = await db.Supplier.find({}).limit(3);
+
+    const categories = await db.Category.find({}).limit(3);
+
+    res.json({ products, suppliers, categories });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };
+
+const getProductsBySupplier = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    console.log(id);
+
+    const products = await db.Product.find({
+      supplierId: id,
+    });
+
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 const addCategory = async (req, res) => {
   try {
     const payload = req.body;
@@ -181,7 +205,7 @@ router.get('/products', viewAllProducts);
 router.get('/categories', viewAllCategories);
 router.get('/suppliers', viewAllSuppliers);
 // View Low in Stock
-router.get('/dashboard', getLowInStockProducts);
+router.get('/dashboard', getDashboard);
 // Find One
 router.get('/products/:id', getProduct);
 router.get('/categories/:id', getCategory);
@@ -198,4 +222,5 @@ router.put('/products/:id', updateProduct);
 router.delete('/categories/:id', deleteCategory);
 router.delete('/suppliers/:id', deleteSupplier);
 router.delete('/products/:id', deleteProduct);
+router.get('/suppliers/:id/products', getProductsBySupplier);
 export default router;
