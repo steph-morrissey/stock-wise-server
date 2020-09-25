@@ -1,4 +1,4 @@
-# Stock Wise
+# Stock Wise Server
 
 ## Scripts
 
