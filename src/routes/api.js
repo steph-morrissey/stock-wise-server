@@ -1,12 +1,12 @@
 import express from 'express';
-
 import db from '../models';
 
 const router = express.Router();
 
 const viewAllProducts = async (req, res) => {
-  const inventory = await db.Product.find({}).catch((err) => console.log(err));
-  res.json(inventory);
+  const products = await db.Product.find({}).catch((err) => console.log(err));
+  const categories = await db.Category.find({}).catch((err) => console.log(err));
+  res.json({ products, categories });
 };
 
 const viewAllCategories = async (req, res) => {
@@ -44,6 +44,50 @@ const getSupplier = async (req, res) => {
     .catch((err) => console.log(err));
 
   res.json(supplier);
+};
+
+const getDashboard = async (req, res) => {
+  try {
+    const products = await db.Product.find({
+      status: 'Low In Stock',
+    });
+
+    const suppliers = await db.Supplier.find({}).limit(3);
+
+    const categories = await db.Category.find({}).limit(3);
+
+    res.json({ products, suppliers, categories });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const getProductsBySupplier = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const products = await db.Product.find({
+      supplierId: id,
+    });
+
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const getProductsByCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const products = await db.Product.find({
+      categoryId: id,
+    });
+
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };
 
 const addCategory = async (req, res) => {
@@ -173,6 +217,8 @@ const deleteProduct = async (req, res) => {
 router.get('/products', viewAllProducts);
 router.get('/categories', viewAllCategories);
 router.get('/suppliers', viewAllSuppliers);
+// View Low in Stock
+router.get('/dashboard', getDashboard);
 // Find One
 router.get('/products/:id', getProduct);
 router.get('/categories/:id', getCategory);
@@ -189,4 +235,7 @@ router.put('/products/:id', updateProduct);
 router.delete('/categories/:id', deleteCategory);
 router.delete('/suppliers/:id', deleteSupplier);
 router.delete('/products/:id', deleteProduct);
+// Get products by supplier or category
+router.get('/suppliers/:id/products', getProductsBySupplier);
+router.get('/categories/:id/products', getProductsByCategory);
 export default router;
